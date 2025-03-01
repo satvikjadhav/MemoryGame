@@ -254,7 +254,19 @@ struct ControlPanel: View {
                 .foregroundColor(.white)
                 .cornerRadius(10)
             }
+            
+            // Game Over Message
+            if gameViewModel.gameOver {
+                Text("Game Over!")
+                    .font(.title)
+                    .foregroundColor(.green)
+                    .padding()
+            }
         }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(radius: 5)
     }
 }
 
