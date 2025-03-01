@@ -33,6 +33,21 @@ struct Card: Identifiable, Equatable {
     }
 }
 
+// Card GameView Model
+class CardGameViewModel: ObservableObject {
+    @Published var cards: [Card] = []
+    @Published var score: Int = 0
+    @Published var moves: Int = 0
+    @Published var gameOver: Bool = false
+    
+    private var firstSelectedCard: Card?
+    
+    init() {
+        startNewGame()
+    }
+}
+
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
