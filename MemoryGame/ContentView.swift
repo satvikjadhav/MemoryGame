@@ -42,10 +42,12 @@ class CardGameViewModel: ObservableObject {
     
     private var firstSelectedCard: Card?
     
+    private let emojis = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐻‍❄️", "🐨", "🐯", "🦁"]
+    
     init() {
         startNewGame()
     }
-
+    
     func startNewGame() {
         // Select a random number of emoji pairs between 6 and 12
         let pairCount = Int.random(in: 6...min(12, emojis.count))
@@ -61,17 +63,17 @@ class CardGameViewModel: ObservableObject {
         gameOver = false
         firstSelectedCard = nil
     }
-
+    
     func shuffleCards() {
         cards.shuffle()
     }
-
+    
     func selectCard(_ selectedCard: Card) {
         // Find the index of the selected card
         guard let index = cards.firstIndex(where: { $0.id == selectedCard.id }),
-                !cards[index].isMatched,    
-                !cards[index].isFaceUp else {
-            return  
+              !cards[index].isMatched,
+              !cards[index].isFaceUp else {
+            return
         }
         
         // Set the card to face up
