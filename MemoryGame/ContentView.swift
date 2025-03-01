@@ -180,12 +180,35 @@ struct CardView: View {
                 Text(card.content)
                     .font(.largeTitle)
             )
+            .opacity(card.isMatched ? 0.5 : 1)
+            .shadow(radius: 3)
     }
     
     // Back of the card
     private var CardBack: some View {
         RoundedRectangle(cornerRadius: 10)
             .fill(Color.blue)
+            .overlay(
+                GeometryReader { geometry in
+                    Path { path in
+                        let width = geometry.size.width
+                        let height = geometry.size.height
+                        let spacing: CGFloat = 10
+                        
+                        for i in stride(from: 0, through: width, by: spacing) {
+                            path.move(to: CGPoint(x: i, y: 0))
+                            path.addLine(to: CGPoint(x: i, y: height))
+                        }
+                        
+                        for i in stride(from: 0, through: height, by: spacing) {
+                            path.move(to: CGPoint(x: 0, y: i))
+                            path.addLine(to: CGPoint(x: width, y: i))
+                        }
+                    }
+                    .stroke(Color.white.opacity(0.3), lineWidth: 1)
+                }
+            )
+            .shadow(radius: 3)
     }
 }
 
