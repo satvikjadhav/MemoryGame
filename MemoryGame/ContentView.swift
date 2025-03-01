@@ -150,28 +150,31 @@ struct CardView: View {
                 )
         }
         .frame(width: 80, height: 120)
+        .rotationEffect(.degrees(rotation))
+        .offset(dragAmount)
+        .animation(.spring(), value: dragAmount)
+        .animation(.spring(), value: card.isFaceUp)
+        .animation(.spring(), value: card.isMatched)
+        .gesture(
+            DragGesture()
+                .onChanged { value in
+                    self.dragAmount = value.translation
+                }
+                .onEnded { _ in
+                    self.dragAmount = .zero
+                }
+        )
+        .gesture(
+            RotationGesture()
+                .onChanged { angle in
+                    self.rotation = angle.degrees
+                }
+        )
+        .onTapGesture(count: 2) {
+            viewModel.selectCard(card)
+        }
     }
-    .gesture(
-    DragGesture()
-        .onChanged { value in
-            self.dragAmount = value.translation
-        }
-        .onEnded { _ in
-            self.dragAmount = .zero
-        }
-    )
-    .gesture(
-    RotationGesture()
-        .onChanged { angle in
-            self.rotation = angle.degrees
-        }
-    )
-    .onTapGesture(count: 2) {
-    viewModel.selectCard(card)
-    }
-
-
-
+    
     // Front of the card
     private var CardFront: some View {
         RoundedRectangle(cornerRadius: 10)
