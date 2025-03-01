@@ -62,6 +62,66 @@ class CardGameViewModel: ObservableObject {
         firstSelectedCard = nil
     }
 
+    func shuffleCards() {
+        cards.shuffle()
+    }
+
+    func selectCard(_ selectedCard: Card) {
+        // Find the index of the selected card
+        guard let index = cards.firstIndex(where: { $0.id == selectedCard.id }),
+                !cards[index].isMatched,    
+                !cards[index].isFaceUp else {
+            return  
+        }
+        
+        // Set the card to face up
+        cards[index].isFaceUp = true
+        
+        // If we already have a first selected card
+        if let firstIndex = cards.firstIndex(where: { $0.id == firstSelectedCard?.id }) {
+            // Increment the moves counter
+            moves += 1
+            
+            // Check if the cards match
+            if cards[firstIndex].content == cards[index].content {
+                // Mark both cards as matched
+                cards[firstIndex].isMatched = true
+                cards[index].isMatched = true
+                
+                // Increment score for a match
+                score += 2
+                
+                // Check if the game is over
+                if cards.allSatisfy({ $0.isMatched }) {
+                    gameOver = true
+                }
+            } else {
+                // Decrement score for a mismatch
+                if score > 0 {
+                    score -= 1
+                }
+                
+                // Flip the cards back after a delay
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.cards[firstIndex].isFaceUp = false
+                    self.cards[index].isFaceUp = false
+                }
+            }
+            
+            // Reset the first selected card
+            firstSelectedCard = nil
+        } else {
+            // Turn all unmatched cards face down first
+            for i in cards.indices {
+                if !cards[i].isMatched && cards[i].isFaceUp && cards[i].id != selectedCard.id {
+                    cards[i].isFaceUp = false
+                }
+            }
+            
+            // Set the first selected card
+            firstSelectedCard = selectedCard
+        }
+    }
 }
 
 
