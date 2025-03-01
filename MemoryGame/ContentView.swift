@@ -166,6 +166,10 @@ struct CardView: View {
             self.rotation = angle.degrees
         }
     )
+    .onTapGesture(count: 2) {
+    viewModel.selectCard(card)
+    }
+
 
 
     // Front of the card
