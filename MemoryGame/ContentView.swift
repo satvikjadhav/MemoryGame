@@ -235,7 +235,9 @@ struct ControlPanel: View {
             // Game Control Buttons
             HStack {
                 Button("New Game") {
-                    
+                    withAnimation(.spring()) {
+                        gameViewModel.startNewGame()
+                    }
                 }
                 .padding()
                 .background(Color.blue)
@@ -243,7 +245,9 @@ struct ControlPanel: View {
                 .cornerRadius(10)
                 
                 Button("Shuffle") {
-                    
+                    withAnimation(.spring()) {
+                        gameViewModel.shuffleCards()
+                    }
                 }
                 .padding()
                 .background(Color.green)
