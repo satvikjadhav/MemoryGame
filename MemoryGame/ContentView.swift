@@ -126,6 +126,38 @@ class CardGameViewModel: ObservableObject {
     }
 }
 
+// Card View
+struct CardView: View {
+    @ObservedObject var viewModel: CardGameViewModel
+    let card: Card
+    @State private var dragAmount = CGSize.zero
+    @State private var rotation: Double = 0
+    
+    var body: some View {
+        ZStack {
+            CardBack
+            CardFront
+        }
+        .frame(width: 80, height: 120)
+    }
+    
+    // Front of the card
+    private var CardFront: some View {
+        RoundedRectangle(cornerRadius: 10)
+            .fill(Color.white)
+            .overlay(
+                Text(card.content)
+                    .font(.largeTitle)
+            )
+    }
+    
+    // Back of the card
+    private var CardBack: some View {
+        RoundedRectangle(cornerRadius: 10)
+            .fill(Color.blue)
+    }
+}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
