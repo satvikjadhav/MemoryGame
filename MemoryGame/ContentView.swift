@@ -45,6 +45,23 @@ class CardGameViewModel: ObservableObject {
     init() {
         startNewGame()
     }
+
+    func startNewGame() {
+        // Select a random number of emoji pairs between 6 and 12
+        let pairCount = Int.random(in: 6...min(12, emojis.count))
+        let emojiPairs = emojis.prefix(pairCount)
+        let shuffledPairs = (emojiPairs + emojiPairs).shuffled()
+        
+        cards = shuffledPairs.enumerated().map { (index, emoji) in
+            Card(content: emoji, position: CGFloat(index) * 10)
+        }
+        
+        score = 0
+        moves = 0
+        gameOver = false
+        firstSelectedCard = nil
+    }
+
 }
 
 
