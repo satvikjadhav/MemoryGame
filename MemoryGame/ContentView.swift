@@ -151,121 +151,16 @@ struct CardView: View {
         }
         .frame(width: 80, height: 120)
     }
+    .gesture(
+    DragGesture()
+        .onChanged { value in
+            self.dragAmount = value.translation
+        }
+        .onEnded { _ in
+            self.dragAmount = .zero
+        }
+    )
 
-    var body: some View {
-    ZStack {
-        CardBack
-            .opacity(card.isFaceUp ? 0 : 1)
-            .rotation3DEffect(
-                .degrees(card.isFaceUp ? 180 : 0),
-                axis: (x: 0, y: 1, z: 0)
-            )
-        
-        CardFront
-            .opacity(card.isFaceUp ? 1 : 0)
-            .rotation3DEffect(
-                .degrees(card.isFaceUp ? 0 : -180),
-                axis: (x: 0, y: 1, z: 0)
-            )
-    }
-    .frame(width: 80, height: 120)
-}
-
-    var body: some View {
-    ZStack {
-        CardBack
-            .opacity(card.isFaceUp ? 0 : 1)
-            .rotation3DEffect(
-                .degrees(card.isFaceUp ? 180 : 0),
-                axis: (x: 0, y: 1, z: 0)
-            )
-        
-        CardFront
-            .opacity(card.isFaceUp ? 1 : 0)
-            .rotation3DEffect(
-                .degrees(card.isFaceUp ? 0 : -180),
-                axis: (x: 0, y: 1, z: 0)
-            )
-    }
-    .frame(width: 80, height: 120)
-}
-
-    var body: some View {
-    ZStack {
-        CardBack
-            .opacity(card.isFaceUp ? 0 : 1)
-            .rotation3DEffect(
-                .degrees(card.isFaceUp ? 180 : 0),
-                axis: (x: 0, y: 1, z: 0)
-            )
-        
-        CardFront
-            .opacity(card.isFaceUp ? 1 : 0)
-            .rotation3DEffect(
-                .degrees(card.isFaceUp ? 0 : -180),
-                axis: (x: 0, y: 1, z: 0)
-            )
-    }
-    .frame(width: 80, height: 120)
-}
-
-    var body: some View {
-    ZStack {
-        CardBack
-            .opacity(card.isFaceUp ? 0 : 1)
-            .rotation3DEffect(
-                .degrees(card.isFaceUp ? 180 : 0),
-                axis: (x: 0, y: 1, z: 0)
-            )
-        
-        CardFront
-            .opacity(card.isFaceUp ? 1 : 0)
-            .rotation3DEffect(
-                .degrees(card.isFaceUp ? 0 : -180),
-                axis: (x: 0, y: 1, z: 0)
-            )
-    }
-    .frame(width: 80, height: 120)
-}
-
-    var body: some View {
-    ZStack {
-        CardBack
-            .opacity(card.isFaceUp ? 0 : 1)
-            .rotation3DEffect(
-                .degrees(card.isFaceUp ? 180 : 0),
-                axis: (x: 0, y: 1, z: 0)
-            )
-        
-        CardFront
-            .opacity(card.isFaceUp ? 1 : 0)
-            .rotation3DEffect(
-                .degrees(card.isFaceUp ? 0 : -180),
-                axis: (x: 0, y: 1, z: 0)
-            )
-    }
-    .frame(width: 80, height: 120)
-}
-
-    var body: some View {
-    ZStack {
-        CardBack
-            .opacity(card.isFaceUp ? 0 : 1)
-            .rotation3DEffect(
-                .degrees(card.isFaceUp ? 180 : 0),
-                axis: (x: 0, y: 1, z: 0)
-            )
-        
-        CardFront
-            .opacity(card.isFaceUp ? 1 : 0)
-            .rotation3DEffect(
-                .degrees(card.isFaceUp ? 0 : -180),
-                axis: (x: 0, y: 1, z: 0)
-            )
-    }
-    .frame(width: 80, height: 120)
-}
-    
     // Front of the card
     private var CardFront: some View {
         RoundedRectangle(cornerRadius: 10)
