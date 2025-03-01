@@ -221,19 +221,34 @@ struct ControlPanel: View {
     
     var body: some View {
         VStack(spacing: 10) {
-            // Placeholder for Score and Moves Display
+            // Score and Moves Display
             HStack {
                 Text("Score: \(gameViewModel.score)")
                     .font(.headline)
+                    .padding()
                 Spacer()
                 Text("Moves: \(gameViewModel.moves)")
                     .font(.headline)
+                    .padding()
             }
             
-            // Placeholder for Game Control Buttons
+            // Game Control Buttons
             HStack {
-                Button("New Game") {}
-                Button("Shuffle") {}
+                Button("New Game") {
+                    
+                }
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                
+                Button("Shuffle") {
+                    
+                }
+                .padding()
+                .background(Color.green)
+                .foregroundColor(.white)
+                .cornerRadius(10)
             }
         }
     }
