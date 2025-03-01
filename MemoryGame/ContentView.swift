@@ -19,6 +19,22 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView()
+
+// Card Data Model
+struct Card: Identifiable, Equatable {
+    var id = UUID()
+    var isFaceUp = false
+    var isMatched = false
+    var content: String
+    var position: CGFloat = 0
+    
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
