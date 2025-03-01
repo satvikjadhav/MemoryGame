@@ -160,6 +160,13 @@ struct CardView: View {
             self.dragAmount = .zero
         }
     )
+    .gesture(
+    RotationGesture()
+        .onChanged { angle in
+            self.rotation = angle.degrees
+        }
+    )
+
 
     // Front of the card
     private var CardFront: some View {
