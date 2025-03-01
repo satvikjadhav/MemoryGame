@@ -174,7 +174,7 @@ struct CardView: View {
             viewModel.selectCard(card)
         }
     }
-    
+
     // Front of the card
     private var CardFront: some View {
         RoundedRectangle(cornerRadius: 10)
@@ -212,6 +212,30 @@ struct CardView: View {
                 }
             )
             .shadow(radius: 3)
+    }
+}
+
+// Control Panel View
+struct ControlPanel: View {
+    @ObservedObject var gameViewModel: CardGameViewModel
+    
+    var body: some View {
+        VStack(spacing: 10) {
+            // Placeholder for Score and Moves Display
+            HStack {
+                Text("Score: \(gameViewModel.score)")
+                    .font(.headline)
+                Spacer()
+                Text("Moves: \(gameViewModel.moves)")
+                    .font(.headline)
+            }
+            
+            // Placeholder for Game Control Buttons
+            HStack {
+                Button("New Game") {}
+                Button("Shuffle") {}
+            }
+        }
     }
 }
 
